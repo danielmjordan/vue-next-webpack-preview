@@ -1,32 +1,25 @@
 <template>
-  <img src="./logo.png">
-  <h1>Hello Vue 3!</h1>
-  <button @click="inc">Clicked {{ count }} times.</button>
+  <button @click="toggleModalState">Open modal</button>
+  <modal v-if="modalOpen">
+    <p>Hello, I'm a modal window.</p>
+  </modal>
 </template>
 
 <script>
-import { ref } from 'vue'
-
+import Modal from './Modal.vue';
 export default {
   setup() {
-    const count = ref(0)
-    const inc = () => {
-      count.value++
-    }
-
+    const modalOpen = ref(false);
+    const toggleModalState = () => {
+      modalOpen.value = !modalOpen.value;
+    };
     return {
-      count,
-      inc
-    }
-  }
-}
+      modalOpen,
+      toggleModalState,
+    };
+  },
+  components: {
+    Modal,
+  },
+};
 </script>
-
-<style scoped>
-img {
-  width: 200px;
-}
-h1 {
-  font-family: Arial, Helvetica, sans-serif;
-}
-</style>
