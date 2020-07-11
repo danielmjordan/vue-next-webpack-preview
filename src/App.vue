@@ -1,12 +1,13 @@
 <template>
   <button @click="toggleModalState">Open modal</button>
-  <modal v-if="modalOpen">
+  <Modal v-if="modalOpen" @close="toggleModalState">
     <p>Hello, I'm a modal window.</p>
-  </modal>
+  </Modal>
 </template>
 
 <script>
 import Modal from './Modal.vue';
+import { ref } from 'vue';
 export default {
   setup() {
     const modalOpen = ref(false);
